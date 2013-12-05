@@ -9,7 +9,7 @@
  * License: GPL2
  */
 
-define(QA_BASE_DIR, 'c:/wamp/apps/discuss/');
+define(QA_BASE_DIR, '/Applications/MNPP/htdocs/disucss/');
 
 require_once QA_BASE_DIR . 'qa-include/qa-base.php';
 

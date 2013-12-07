@@ -41,12 +41,8 @@ function post2question($postId) {
 add_action('publish_post', 'post2question');
 
 function p2q_add_discuss_btn($content) {
-  $cur_post = get_post();
-  if ( $cur_post->post_type == 'post' ) {
-    $qId = get_post_meta($cur_post->ID, 'disucss_qId', true);
-    if ( $qId ) {
-      $btn_url = get_option('p2q_url_prefix') . $qId;
-      $discuss_btn = '<a id="q2a_btn" target="_blank" href="' . $btn_url . '">disucss</a>';
+  if (get_option('p2q_btn_switch')) {
+    if ($discuss_btn = p2q_get_discuss_btn()) {
       return $discuss_btn . $content;
     }
   }
@@ -54,3 +50,15 @@ function p2q_add_discuss_btn($content) {
 }
 
 add_filter('the_content', 'p2q_add_discuss_btn');
+
+function p2q_get_discuss_btn() {
+  $cur_post = get_post();
+  if ( $cur_post->post_type == 'post' ) {
+    $qId = get_post_meta($cur_post->ID, 'disucss_qId', true);
+    if ( $qId ) {
+      $btn_url = get_option('p2q_url_prefix') . $qId;
+      return '<a id="q2a_btn" target="_blank" href="' . $btn_url . '">disucss</a>';
+    }
+  }
+  return null;
+}

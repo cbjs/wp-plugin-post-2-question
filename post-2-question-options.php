@@ -3,6 +3,7 @@
 // register options
 function post2question_option_init() {
   register_setting('p2q_options', 'p2q_url_prefix');
+  register_setting('p2q_options', 'p2q_btn_switch');
 }
 
 add_action('admin_init', 'post2question_option_init');
@@ -19,10 +20,19 @@ function post2question_option_ui() {
         <tbody>
           <tr valign="top">
             <th scope="row">
-              <label for="p2q_url_prefix"> Url Prefix</label>
+              <label for="p2q_url_prefix">Url Prefix</label>
             </th>
             <td>
               <input type="text" id="p2q_url_prefix" name="p2q_url_prefix" class="regular-text code" value="<?php echo esc_attr(get_option('p2q_url_prefix'));?>" />
+            </td>
+          </tr>
+          <tr valign="top">
+            <th scope="row">
+              <label for="p2q_btn_switch">Append Button to Content</label>
+            </th>
+            <td>
+            <input type="checkbox" id="p2q_btn_switch" name="p2q_btn_switch" <?php 
+echo get_option('p2q_btn_switch') ? 'checked' : ''; ?> />
             </td>
           </tr>
         </tbody>
